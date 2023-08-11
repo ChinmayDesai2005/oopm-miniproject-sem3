@@ -12,14 +12,15 @@ public class Main {
 
         //Airport details
         Airport a1 = new Airport();
-         a1.setAirportName("Delhi Indira Gandhi International Airport ");
+        a1.setAirportId(1);
+        a1.setAirportName("Delhi Indira Gandhi International Airport ");
         a1.setAirportLocation("Delhi");
         a1.setAirportCode("DEL");
         a1.setIsInternational("Yes");
         a1.setNoOfRunways(3);
 
         Airport a2 = new Airport();
-        a2.setAirportId("");
+        a2.setAirportId(2);
         a2.setAirportName("Mumbai Chhatrapati Shivaji International Airport");
         a2.setAirportLocation("Mumbai, India");
         a2.setAirportCode("BOM");
@@ -27,7 +28,7 @@ public class Main {
         a2.setNoOfRunways(3);
 
         Airport a3 = new Airport();
-        a3.setAirportId("");
+        a3.setAirportId(3);
         a3.setAirportName("Kolkata Subash Chandra Bose International Airport");
         a3.setAirportLocation("Kolkata,India");
         a3.setAirportCode("CCU");
@@ -35,7 +36,7 @@ public class Main {
         a3.setNoOfRunways(3);
 
         Airport a4 = new Airport();
-        a4.setAirportId("");
+        a4.setAirportId(4);
         a4.setAirportName("Chennai International Airport");
         a4.setAirportLocation("Chennai, India");
         a4.setAirportCode("MAA");
@@ -43,7 +44,7 @@ public class Main {
         a4.setNoOfRunways(3);
 
         Airport a5 = new Airport();
-        a5.setAirportId("");
+        a5.setAirportId(5);
         a5.setAirportName("Visakhapatnam Airport");
         a5.setAirportLocation("Visakhapatnam");
         a5.setAirportCode("VTZ");
@@ -52,40 +53,45 @@ public class Main {
 
         //flight details
         Flight f1 = new Flight();
+        f1.setFlightId(1);
         f1.setFlightName("Vistara");
-        f1.setFlightDate(11,8,2023);
+//        f1.setFlightDate(11,8,2023);
         f1.setToAirport("Mumbai");
         f1.setFlightCode("AI863");
         f1.setFlightModel("32N");
         f1.setFlightCapacity(200);
 
         Flight f2 = new Flight();
+        f2.setFlightId(2);
         f2.setFlightName("Vistara");
-        f2.setFlightDate(15,8,2023);
+//        f2.setFlightDate(15,8,2023);
         f2.setToAirport("Kolkata");
         f2.setFlightCode("UK773");
         f2.setFlightModel("A20N");
         f2.setFlightCapacity(250);
 
         Flight f3 = new Flight();
+        f3.setFlightId(3);
         f3.setFlightName("Air India");
-        f3.setFlightDate(16,8,2023);
+//        f3.setFlightDate(16,8,2023);
         f3.setToAirport("London");
         f3.setFlightCode("AI131");
         f3.setFlightModel("B788");
         f3.setFlightCapacity(400);
 
         Flight f4 = new Flight();
+        f4.setFlightId(4);
         f4.setFlightName("Indigo");
-        f4.setFlightDate(20,8,2023);
+//        f4.setFlightDate(20,8,2023);
         f4.setToAirport("Goa");
         f4.setFlightCode("6E5051");
         f4.setFlightModel("A21N");
         f4.setFlightCapacity(250);
 
         Flight f5 = new Flight();
+        f5.setFlightId(5);
         f5.setFlightName("Emirates");
-        f5.setFlightDate(9,9,2023);
+//        f5.setFlightDate(9,9,2023);
         f5.setToAirport("Dubai");
         f5.setFlightCode("EK506");
         f5.setFlightModel("B77W");
@@ -100,27 +106,27 @@ public class Main {
 
         Schedule s2=new Schedule();
         Calendar cal2=Calendar.getInstance();
-        cal2.set(2023,8,10);
+        cal2.set(2023,8,11);
 
         Schedule s3 = new Schedule();
         Calendar cal3 =Calendar.getInstance();
-        cal3.set(2023,8,10);
+        cal3.set(2023,8,12);
 
         Schedule s4 = new Schedule();
         Calendar cal4 =Calendar.getInstance();
-        cal4.set(2023,8,10);
+        cal4.set(2023,8,13);
 
         Schedule s5 = new Schedule();
         Calendar cal5 =Calendar.getInstance();
-        cal5.set(2023,8,10);
+        cal5.set(2023,8,14);
 
         Schedule s6 = new Schedule();
         Calendar cal6 =Calendar.getInstance();
-        cal6.set(2023,8,10);
+        cal6.set(2023,8,15);
 
         Schedule s7 = new Schedule();
         Calendar cal7 =Calendar.getInstance();
-        cal7.set(2023,8,10);
+        cal7.set(2023,8,16);
 
 
 
