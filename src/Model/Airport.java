@@ -8,7 +8,7 @@ public class Airport {
     private String airportLocation;
     private String airportCode;
     private int airportCapacity;
-    private String isInternational;
+    private boolean isInternational;
     private int noOfHangers;
     private int noOfRunways;
 
@@ -30,7 +30,7 @@ public class Airport {
         this.airportCapacity = airportCapacity;
     }
 
-    public void setIsInternational(String isInternational){
+    public void setIsInternational(boolean isInternational){
         this.isInternational = isInternational;
     }
 
@@ -58,7 +58,7 @@ public class Airport {
         return this.airportId;
     }
 
-    public String getIsInternational(){
+    public boolean getIsInternational(){
         return this.isInternational;
     }
 

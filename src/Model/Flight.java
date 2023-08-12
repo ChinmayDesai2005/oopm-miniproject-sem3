@@ -4,7 +4,6 @@ import java.util.Calendar;
 public class Flight {
     private int flightId;
     private String flightName;
-    private String toAirport;
     private String flightCode;
     private String flightModel;
     private int flightCapacity;
@@ -12,10 +11,6 @@ public class Flight {
     public void setFlightId(int flightId){this.flightId = flightId;}
     public void setFlightName(String flightName) {
         this.flightName = flightName;
-    }
-
-    public void setToAirport(String toAirport) {
-        this.toAirport = toAirport;
     }
 
     public void setFlightCode(String flightCode) {
@@ -36,12 +31,7 @@ public class Flight {
         return this.flightName;
     }
 
-    public String getToAirport() {
-        return this.toAirport;
-    }
-
-    public String getFlightCode() {
-        return this.flightCode;}
+    public String getFlightCode() {return this.flightCode;}
 
     public String getFlightModel() {
         return this.flightModel;
