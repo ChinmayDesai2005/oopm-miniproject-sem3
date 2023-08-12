@@ -3,16 +3,16 @@ package Model;
 import java.lang.Math;
 
 public class Airport {
-    private String airportId;
+    private int airportId;
     private String airportName;
     private String airportLocation;
     private String airportCode;
     private int airportCapacity;
-    private String isInternational;
+    private boolean isInternational;
     private int noOfHangers;
     private int noOfRunways;
 
-    public void setAirportId(String airportId){this.airportId = airportId;}
+    public void setAirportId(int airportId){this.airportId = airportId;}
 
     public void setAirportName(String airportName){
         this.airportName = airportName;
@@ -30,7 +30,7 @@ public class Airport {
         this.airportCapacity = airportCapacity;
     }
 
-    public void setIsInternational(String isInternational){
+    public void setIsInternational(boolean isInternational){
         this.isInternational = isInternational;
     }
 
@@ -54,11 +54,11 @@ public class Airport {
         return this.airportCode;
     }
 
-    public String getAirportId(){
+    public int getAirportId(){
         return this.airportId;
     }
 
-    public String getIsInternational(){
+    public boolean getIsInternational(){
         return this.isInternational;
     }
 
