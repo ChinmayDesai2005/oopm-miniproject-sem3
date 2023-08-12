@@ -1,15 +1,14 @@
 package Model;
 
-import java.util.Calendar;
+import java.util.Date;
 public class Flight {
-    private int flightId;
     private String flightName;
+    private Date flightDate;
     private String toAirport;
     private String flightCode;
     private String flightModel;
     private int flightCapacity;
 
-    public void setFlightId(int flightId){this.flightId = flightId;}
     public void setFlightName(String flightName) {
         this.flightName = flightName;
     }
@@ -30,7 +29,9 @@ public class Flight {
         this.flightCapacity = flightCapacity;
     }
 
-    public int getFlightId(){return this.flightId;}
+    public void setFlightDate(Date flightDate) {
+        this.flightDate = flightDate;
+    }
 
     public String getFlightName() {
         return this.flightName;
@@ -52,5 +53,11 @@ public class Flight {
     }
 
 
+    public Date setFlightDate(int i, int i1, int i2) {
+        return this.flightDate;
+    }
 
+
+    public Date getFlightDate() {return this.flightDate;
+    }
 }

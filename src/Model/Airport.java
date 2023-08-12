@@ -3,7 +3,7 @@ package Model;
 import java.lang.Math;
 
 public class Airport {
-    private int airportId;
+    private String airportId;
     private String airportName;
     private String airportLocation;
     private String airportCode;
@@ -12,7 +12,7 @@ public class Airport {
     private int noOfHangers;
     private int noOfRunways;
 
-    public void setAirportId(int airportId){this.airportId = airportId;}
+    public void setAirportId(String airportId){this.airportId = airportId;}
 
     public void setAirportName(String airportName){
         this.airportName = airportName;
@@ -54,7 +54,7 @@ public class Airport {
         return this.airportCode;
     }
 
-    public int getAirportId(){
+    public String getAirportId(){
         return this.airportId;
     }
 
