@@ -57,6 +57,7 @@ public class Main {
                         System.out.println("Do you wish to have flightId to be sequential(S) or user-input(U) generated: ");
                         String seq_or_ran = scanner.next();
 
+                        //Use Of Constructor and Polymorphism
                         if(seq_or_ran.equals("S")){
                             flights[currentFlightCount] = new Flight(currentFlightCount + 1, name, code, model, capacity);
                             currentFlightCount++;
@@ -67,13 +68,6 @@ public class Main {
                             flights[id-1] = new Flight(id-1, name, code, model, capacity);
                             currentFlightCount++;
                         }
-
-//                        Flight currentFlight = flights[currentFlightCount - 1];
-//                        currentFlight.setFlightId(currentFlightCount);
-//                        currentFlight.setFlightName(name);
-//                        currentFlight.setFlightCode(code);
-//                        currentFlight.setFlightModel(model);
-//                        currentFlight.setFlightCapacity(capacity);
 
 
                         System.out.println("Flight created and added to array!");

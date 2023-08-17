@@ -8,10 +8,9 @@ public class Flight {
     private String flightModel;
     private int flightCapacity;
 
+    //Flight Constructor
     public Flight(int flightId, String flightName, String flightCode, String flightModel, int flightCapacity)
     {
-        // E1203 Vistara A380
-        // Chinmay Desai
         setFlightId(flightId);
         setFlightName(flightName);
         setFlightCode(flightCode);
@@ -21,8 +20,7 @@ public class Flight {
 
     public Flight(String flightName, String flightCode, String flightModel, int flightCapacity)
     {
-        // E1203 Vistara A380
-        // Chinmay Desai
+
         setFlightId((int)Math.random());
         setFlightName(flightName);
         setFlightCode(flightCode);
