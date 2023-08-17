@@ -54,15 +54,27 @@ public class Main {
                         System.out.println("Enter Flight Capacity: ");
                         int capacity = scanner.nextInt();
 
-                        flights[currentFlightCount] = new Flight();
-                        currentFlightCount++;
+                        System.out.println("Do you wish to have flightId to be sequential(S) or user-input(U) generated: ");
+                        String seq_or_ran = scanner.next();
 
-                        Flight currentFlight = flights[currentFlightCount - 1];
-                        currentFlight.setFlightId(currentFlightCount);
-                        currentFlight.setFlightName(name);
-                        currentFlight.setFlightCode(code);
-                        currentFlight.setFlightModel(model);
-                        currentFlight.setFlightCapacity(capacity);
+                        if(seq_or_ran.equals("S")){
+                            flights[currentFlightCount] = new Flight(currentFlightCount + 1, name, code, model, capacity);
+                            currentFlightCount++;
+                        }
+                        else if(seq_or_ran.equals("U")){
+                            System.out.println("Enter Id of the Flight("+currentFlightCount+1+" - 100): ");
+                            int id = scanner.nextInt();
+                            flights[id-1] = new Flight(id-1, name, code, model, capacity);
+                            currentFlightCount++;
+                        }
+
+//                        Flight currentFlight = flights[currentFlightCount - 1];
+//                        currentFlight.setFlightId(currentFlightCount);
+//                        currentFlight.setFlightName(name);
+//                        currentFlight.setFlightCode(code);
+//                        currentFlight.setFlightModel(model);
+//                        currentFlight.setFlightCapacity(capacity);
+
 
                         System.out.println("Flight created and added to array!");
 
