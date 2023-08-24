@@ -6,26 +6,23 @@ public class Flight {
     private String flightName;
     private String flightCode;
     private String flightModel;
-    private int flightCapacity;
 
     //Flight Constructor
-    public Flight(int flightId, String flightName, String flightCode, String flightModel, int flightCapacity)
+    public Flight(int flightId, String flightName, String flightCode, String flightModel)
     {
         setFlightId(flightId);
         setFlightName(flightName);
         setFlightCode(flightCode);
         setFlightModel(flightModel);
-        setFlightCapacity(flightCapacity);
     }
 
-    public Flight(String flightName, String flightCode, String flightModel, int flightCapacity)
+    public Flight(String flightName, String flightCode, String flightModel)
     {
 
         setFlightId((int)Math.random());
         setFlightName(flightName);
         setFlightCode(flightCode);
         setFlightModel(flightModel);
-        setFlightCapacity(flightCapacity);
     }
 
 
@@ -42,10 +39,6 @@ public class Flight {
         this.flightModel = flightModel;
     }
 
-    public void setFlightCapacity(int flightCapacity) {
-        this.flightCapacity = flightCapacity;
-    }
-
     public int getFlightId(){return this.flightId;}
 
     public String getFlightName() {
@@ -58,9 +51,7 @@ public class Flight {
         return this.flightModel;
     }
 
-    public int getFlightCapacity() {
-        return this.flightCapacity;
-    }
+
 
 
 
