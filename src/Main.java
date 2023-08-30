@@ -36,7 +36,9 @@ public class Main {
             System.out.println("4. Display an Airport");
             System.out.println("5. Schedule a Flight to an Airport");
             System.out.println("6. Display all Schedules");
-            System.out.println("7. Exit");
+            System.out.println("7. Add Airport Terminal");
+            System.out.println("8. Remove Airport Terminal");
+            System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -199,6 +201,34 @@ public class Main {
 
                     break;
                 case 7:
+                    System.out.println("Enter the id of the Airport: ");
+                    int airport_id = Integer.parseInt(String.valueOf(scanner.nextInt()));
+                    if(airport_id-1  < currentAirportCount)
+                    {
+                        System.out.println("Terminal Format : TerminalCode TerminalName TerminalLocation");
+                        System.out.println("Add Terminal to the airport "+airports[airport_id - 1].getAirportName() +": ");
+                        scanner.nextLine();
+                        String terminal = scanner.nextLine();
+                        airports[airport_id - 1].addAirportTerminal(terminal);
+                    }
+                    else {
+                        System.out.println("Airport isn't added. IndexOutOfBounds!");
+                    }
+                    break;
+                case 8:
+                    System.out.print("Enter id of the Airport: ");
+                    airport_id = Integer.parseInt(String.valueOf(scanner.nextInt()));
+                    if(airport_id-1 < currentAirportCount)
+                    {
+                        System.out.print("Enter index of the Terminal to be removed for the Airport "+ airports[airport_id - 1].getAirportName() +": ");
+                        int terminal_no = Integer.parseInt(String.valueOf(scanner.nextInt()));
+                        airports[airport_id - 1].removeAirportTerminal(terminal_no);
+                    }
+                    else {
+                        System.out.println("Enter Proper Index. Index entered does not exist");
+                    }
+                    break;
+                case 9:
                     System.out.println("Exiting!");
 
                     break;
@@ -208,7 +238,7 @@ public class Main {
                     break;
 
             }
-        }while(choice != 7);
+        }while(choice != 9);
 
     }
 }
