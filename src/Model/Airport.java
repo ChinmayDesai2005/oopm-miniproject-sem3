@@ -76,6 +76,10 @@ public class Airport implements AirportTerminal{
         return this.noOfRunways;
     }
 
+    public String displayAirport(){
+        return ("Airport Id : "+getAirportId()+"\nAirport Name : "+getAirportName()+"\nAirport Code : "+getAirportCode()+"\nAirport Location : "+getAirportLocation()+"\nisInternational : "+getIsInternational()+"\nNo of Runways : "+getNoOfRunways()+"\nNo of Hangers : "+getNoOfHangers());
+    }
+
     @Override
     public void addAirportTerminal(String terminal) { this.airport_terminals.add(terminal); }
 

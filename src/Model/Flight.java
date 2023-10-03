@@ -51,6 +51,11 @@ public class Flight {
         return this.flightModel;
     }
 
+    final public String display()
+    {
+         return ("Flight Id : "+getFlightId()+"\nFlight Name : "+getFlightName()+"\nFlight Code : "+getFlightCode()+"\nFlight Model : "+getFlightModel());
+    }
+
 
 
 

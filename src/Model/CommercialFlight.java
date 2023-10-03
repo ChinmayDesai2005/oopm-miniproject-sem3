@@ -22,4 +22,9 @@ public class CommercialFlight extends Flight{
 
     public int getNoOfPassengers() { return this.noOfPassengers; }
     public String getFlightClasses() { return this.flightClasses; }
+
+    public String displayFlight(){
+        return display() + "\nNo of Passengers : "+getNoOfPassengers()+"\nFlight Classes : "+getFlightClasses();
+
+    }
 }
