@@ -1,8 +1,8 @@
 package Model;
 
-import java.lang.Math;
+import java.util.ArrayList;
 
-public class Airport {
+public class Airport implements AirportTerminal{
     private int airportId;
     private String airportName;
     private String airportLocation;
@@ -11,6 +11,8 @@ public class Airport {
     private boolean isInternational;
     private int noOfHangers;
     private int noOfRunways;
+
+    ArrayList<String> airport_terminals = new ArrayList<String>();
 
     public void setAirportId(int airportId){this.airportId = airportId;}
 
@@ -73,6 +75,20 @@ public class Airport {
     public int getNoOfRunways(){
         return this.noOfRunways;
     }
+
+    @Override
+    public void addAirportTerminal(String terminal) { this.airport_terminals.add(terminal); }
+
+    @Override
+    public void removeAirportTerminal(int terminal_no) { this.airport_terminals.remove(terminal_no); }
+
+    @Override
+    public void displayAirportTerminals() {
+        for (int i = 0; i < airport_terminals.size(); i++) {
+            System.out.println("Airport Terminal"+i+" : "+airport_terminals.get(i));
+        }
+    }
+
 
 
 

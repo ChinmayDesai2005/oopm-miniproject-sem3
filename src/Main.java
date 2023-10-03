@@ -1,9 +1,11 @@
 import Model.Airport;
+import Model.CommercialFlight;
 import Model.Flight;
 import Model.Schedule;
 
 import java.util.Calendar;
 import java.util.Scanner;
+import java.util.HashMap;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -15,8 +17,8 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        Flight[] flights;
-        flights = new Flight[100];
+        CommercialFlight[] flights;
+        flights = new CommercialFlight[100];
 
         Airport[] airports;
         airports = new Airport[100];
@@ -34,7 +36,9 @@ public class Main {
             System.out.println("4. Display an Airport");
             System.out.println("5. Schedule a Flight to an Airport");
             System.out.println("6. Display all Schedules");
-            System.out.println("7. Exit");
+            System.out.println("7. Add Airport Terminal");
+            System.out.println("8. Remove Airport Terminal");
+            System.out.println("9. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -51,21 +55,26 @@ public class Main {
                         System.out.println("Enter Flight Model: ");
                         String model = scanner.next();
 
-                        System.out.println("Enter Flight Capacity: ");
-                        int capacity = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.println("Enter the classes in the Flight: ");
+                        String flightClasses = scanner.nextLine();
+
+                        System.out.println("Enter Number of Passengers: ");
+                        int passengers = scanner.nextInt();
 
                         System.out.println("Do you wish to have flightId to be sequential(S) or user-input(U) generated: ");
                         String seq_or_ran = scanner.next();
 
+
                         //Use Of Constructor and Polymorphism
                         if(seq_or_ran.equals("S")){
-                            flights[currentFlightCount] = new Flight(currentFlightCount + 1, name, code, model, capacity);
+                            flights[currentFlightCount] = new CommercialFlight(currentFlightCount + 1, name, code, model, passengers, flightClasses);
                             currentFlightCount++;
                         }
                         else if(seq_or_ran.equals("U")){
                             System.out.println("Enter Id of the Flight("+currentFlightCount+1+" - 100): ");
                             int id = scanner.nextInt();
-                            flights[id-1] = new Flight(id-1, name, code, model, capacity);
+                            flights[id-1] = new CommercialFlight(id-1, name, code, model, passengers, flightClasses);
                             currentFlightCount++;
                         }
 
@@ -80,14 +89,15 @@ public class Main {
                 case 2:
                     System.out.println("Enter Flight Id to Display Flight: ");
                     int flight_id_to_display = scanner.nextInt();
-                    Flight currentFlight = flights[flight_id_to_display - 1];
+                    CommercialFlight currentFlight = flights[flight_id_to_display - 1];
 
                     System.out.println("-----------------------------------------------------------------------");
                     System.out.println("FlightId: "+currentFlight.getFlightId());
                     System.out.println("FlightName: "+currentFlight.getFlightName());
                     System.out.println("FlightCode: "+currentFlight.getFlightCode());
                     System.out.println("FlightModel: "+currentFlight.getFlightModel());
-                    System.out.println("FlightCapacity: "+currentFlight.getFlightCapacity());
+                    System.out.println("FlightCapacity: "+currentFlight.getNoOfPassengers());
+                    System.out.println("FlightClasses: "+currentFlight.getFlightClasses());
                     System.out.println("-----------------------------------------------------------------------");
 
                     break;
@@ -191,6 +201,34 @@ public class Main {
 
                     break;
                 case 7:
+                    System.out.println("Enter the id of the Airport: ");
+                    int airport_id = Integer.parseInt(String.valueOf(scanner.nextInt()));
+                    if(airport_id-1  < currentAirportCount)
+                    {
+                        System.out.println("Terminal Format : TerminalCode TerminalName TerminalLocation");
+                        System.out.println("Add Terminal to the airport "+airports[airport_id - 1].getAirportName() +": ");
+                        scanner.nextLine();
+                        String terminal = scanner.nextLine();
+                        airports[airport_id - 1].addAirportTerminal(terminal);
+                    }
+                    else {
+                        System.out.println("Airport isn't added. IndexOutOfBounds!");
+                    }
+                    break;
+                case 8:
+                    System.out.print("Enter id of the Airport: ");
+                    airport_id = Integer.parseInt(String.valueOf(scanner.nextInt()));
+                    if(airport_id-1 < currentAirportCount)
+                    {
+                        System.out.print("Enter index of the Terminal to be removed for the Airport "+ airports[airport_id - 1].getAirportName() +": ");
+                        int terminal_no = Integer.parseInt(String.valueOf(scanner.nextInt()));
+                        airports[airport_id - 1].removeAirportTerminal(terminal_no);
+                    }
+                    else {
+                        System.out.println("Enter Proper Index. Index entered does not exist");
+                    }
+                    break;
+                case 9:
                     System.out.println("Exiting!");
 
                     break;
@@ -200,7 +238,7 @@ public class Main {
                     break;
 
             }
-        }while(choice != 7);
+        }while(choice != 9);
 
     }
 }
