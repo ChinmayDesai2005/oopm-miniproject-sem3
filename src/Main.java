@@ -40,7 +40,7 @@ public class Main {
 
             switch (choice){
                 case 1:
-                    flights = mf1.readJsonFile("src/Model/flights.json");
+                    flights = mf1.readJsonFile("src/Model/flightssss.json");
                     System.out.println("All Flights Loaded!");
                     break;
 

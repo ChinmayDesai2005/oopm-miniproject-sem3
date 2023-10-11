@@ -35,6 +35,10 @@ public class manageFlight extends fileHandlingFlight{
             }
         } catch (IOException e) {
             e.printStackTrace();
+            System.out.println("------------------------------------");
+            System.out.println(e);
+            System.out.println("ERROR : Please check the path specified for JSON file!");
+            System.out.println("-------------------------------------");
         }
 
         return flights;
