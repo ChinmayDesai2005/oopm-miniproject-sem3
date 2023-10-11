@@ -9,9 +9,17 @@ import java.lang.management.OperatingSystemMXBean;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class manageFlight extends fileHandlingFlight{
+public class manageFlight extends fileHandlingFlight implements Displayable{
     ArrayList<CommercialFlight> flights = new ArrayList<CommercialFlight>();
-    public ArrayList<CommercialFlight> loadJsonFile(String file_path) {return readJsonFile(file_path);}
+
+    private int linesBeingDisplayed;
+    private int firstLineIndex;
+    int lastLineIndex;
+    int highlightedLine;
+
+    public manageFlight(){
+        readJsonFile("src/Model/flights.json");
+    }
     public ArrayList<CommercialFlight> readJsonFile(String file_path){
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -56,5 +64,85 @@ public class manageFlight extends fileHandlingFlight{
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<String> getHeaders() {
+        ArrayList<String> headers = new ArrayList<String>();
+        headers.add("Id");
+        headers.add("Name");
+        headers.add("Code");
+        headers.add("Model");
+        headers.add("Classes");
+        headers.add("Passengers");
+
+        return headers;
+    }
+
+    @Override
+    public ArrayList<String> getLine(int line) {
+        ArrayList<String> flight_details = new ArrayList<String>();
+
+        flight_details.add(String.valueOf(flights.get(line).getFlightId()));
+        flight_details.add(flights.get(line).getFlightName());
+        flight_details.add(flights.get(line).getFlightCode());
+        flight_details.add(flights.get(line).getFlightModel());
+        flight_details.add(String.valueOf(flights.get(line).getFlightClasses()));
+        flight_details.add(String.valueOf(flights.get(line).getNoOfPassengers()));
+        return flight_details;
+    }
+
+    @Override
+    public ArrayList<ArrayList<String>> getLines(int firstLine, int lastLine) {
+        ArrayList<ArrayList<String>> flights_subset = new ArrayList<ArrayList<String>>();
+
+        for (int i = firstLine; i <= lastLine; i++) {
+            flights_subset.add(getLine(i));
+        }
+        return flights_subset;
+    }
+
+    @Override
+    public int getFirstLineToDisplay() {
+        return firstLineIndex;
+    }
+
+    @Override
+    public int getLineToHighlight() {
+        return highlightedLine;
+    }
+
+    @Override
+    public int getLastLineToDisplay() {
+        setLastLineToDisplay(getFirstLineToDisplay() + getLinesBeingDisplayed() - 1);
+        return lastLineIndex;
+    }
+
+    @Override
+    public int getLinesBeingDisplayed() {
+        return linesBeingDisplayed;
+    }
+
+    @Override
+    public void setFirstLineToDisplay(int firstLine) {
+        firstLineIndex = firstLine;
+    }
+
+    @Override
+    public void setLineToHighlight(int highlightedLine) {
+        highlightedLine = highlightedLine;
+    }
+
+    @Override
+    public void setLastLineToDisplay(int lastLine) {
+        lastLineIndex = lastLine;
+    }
+
+    @Override
+    public void setLinesBeingDisplayed(int numberOfLines) {
+        linesBeingDisplayed = numberOfLines;
+    }
+
+    public ArrayList getTable() {
+        return flights;
     }
 }
