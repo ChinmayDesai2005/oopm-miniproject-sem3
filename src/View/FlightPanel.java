@@ -53,6 +53,8 @@ public class FlightPanel extends JDialog {
                     } else {
                         addToFlightTable(flights, temp_flight);
                         clearFields();
+                        JOptionPane.showMessageDialog(contentPane, "Flight Added!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
                     }
                 }
                 catch (Exception s){
@@ -76,6 +78,9 @@ public class FlightPanel extends JDialog {
                         System.out.println(flights);
                         loadFlightTable(flights);
                         mf1.writeJsonFile(flights);
+                        clearFields();
+                        JOptionPane.showMessageDialog(contentPane, "Flight Updated!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
                     } else {
                         JOptionPane.showMessageDialog(contentPane, " Unable to Update!\nNo Such Entry Exists!", "ERROR", JOptionPane.WARNING_MESSAGE);
                     }
@@ -97,6 +102,8 @@ public class FlightPanel extends JDialog {
                     loadFlightTable(flights);
                     mf1.writeJsonFile(flights);
                     clearFields();
+                    JOptionPane.showMessageDialog(contentPane, "Flight Deleted!", "Success", JOptionPane.INFORMATION_MESSAGE);
+
                 }
                 catch (Exception s){
                     s.printStackTrace();
@@ -199,8 +206,8 @@ public class FlightPanel extends JDialog {
 
     public void addToFlightTable(ArrayList<CommercialFlight> flights, CommercialFlight flight){
         flights.add(flight);
-        System.out.println(flights.size());
-        System.out.println(tableModel.getRowCount());
+//        System.out.println(flights.size());
+//        System.out.println(tableModel.getRowCount());
         mf1.writeJsonFile(flights);
         tableModel.addRow(new Object[]{flight.getFlightId(), flight.getFlightName(), flight.getFlightCode(), flight.getFlightModel(), flight.getFlightClasses(), flight.getNoOfPassengers()});
 //        loadFlightTable(flights);
