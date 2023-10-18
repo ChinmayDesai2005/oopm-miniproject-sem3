@@ -9,40 +9,56 @@ import java.lang.management.OperatingSystemMXBean;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
+import java.io.*;
+import java.lang.management.OperatingSystemMXBean;
+import java.util.ArrayList;
+import java.util.Calendar;
+
 public class manageFlight extends fileHandlingFlight implements Displayable{
     ArrayList<CommercialFlight> flights = new ArrayList<CommercialFlight>();
+
+    JSONArray flightsJSON;
+    String toJSON;
 
     private int linesBeingDisplayed;
     private int firstLineIndex;
     int lastLineIndex;
     int highlightedLine;
 
-    public manageFlight(){
-        readJsonFile("src/Model/flights.json");
-    }
+//
+//    public manageFlight(){
+//        readJsonFile("src/Model/flights.json");
+//    }
+    public ArrayList<CommercialFlight> loadJsonFile(String file_path) {return readJsonFile(file_path);}
     public ArrayList<CommercialFlight> readJsonFile(String file_path){
-        ObjectMapper objectMapper = new ObjectMapper();
+        toJSON = file_path;
+        JSONParser jsonParser = new JSONParser();
 
-        try{
+        try(FileReader reader = new FileReader(file_path)){
 
-            JsonNode rootNode = objectMapper.readTree(new File(file_path));
+            Object rootNode = jsonParser.parse(reader);
+            flightsJSON = (JSONArray) rootNode;
+//            System.out.println(flightsJSON);
 
-            if (rootNode.isArray()) {
-                for (JsonNode node : rootNode) {
-                    int id = node.get("flight_id").asInt();
-                    String flight_name = node.get("flight_name").asText();
-                    String flight_code = node.get("flight_code").asText();
-                    String flight_model = node.get("flight_model").asText();
-                    String flight_classes = node.get("flight_classes").asText();
-                    int no_of_passengers = node.get("no_of_passengers").asInt();
-                    CommercialFlight temp_flight = new CommercialFlight(id, flight_name, flight_code, flight_model, no_of_passengers, flight_classes);
-                    flights.add(temp_flight);
-
-
-                }
+            for(int i = 0; i < flightsJSON.size(); i++) {
+                System.out.println(flightsJSON.get(i));
+                JSONObject node = (JSONObject) flightsJSON.get(i);
+                int id = ((Long) node.get("flight_id")).intValue();
+                String flight_name = node.get("flight_name").toString();
+                String flight_code = node.get("flight_code").toString();
+                String flight_model = node.get("flight_model").toString();
+                String flight_classes = node.get("flight_classes").toString();
+                int no_of_passengers = ((Long) node.get("no_of_passengers")).intValue();
+                CommercialFlight temp_flight = new CommercialFlight(id, flight_name, flight_code, flight_model, no_of_passengers, flight_classes);
+                flights.add(temp_flight);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
         }
 
         return flights;
@@ -50,21 +66,29 @@ public class manageFlight extends fileHandlingFlight implements Displayable{
 
     @Override
     public void writeJsonFile(ArrayList<CommercialFlight> flights) {
-        ObjectMapper Obj = new ObjectMapper();
-        try {
-
-            for (int i = 0; i < flights.size(); i++)
-            {
-                // Converting the Java object into a JSON string
-                String flight_str = Obj.writeValueAsString(flights.get(i));
-                // Displaying Java object into a JSON string
-                System.out.println(flight_str);
-            }
+        flightsJSON.clear();
+        for (CommercialFlight flight : flights) {
+            JSONObject newFlight = new JSONObject();
+            newFlight.put("flight_id", flight.getFlightId());
+            newFlight.put("flight_name", flight.getFlightName());
+            newFlight.put("flight_code", flight.getFlightCode());
+            newFlight.put("flight_model", flight.getFlightModel());
+            newFlight.put("flight_classes", flight.getFlightClasses());
+            newFlight.put("no_of_passengers", flight.getNoOfPassengers());
+            flightsJSON.add(newFlight);
         }
-        catch (IOException e) {
+        try (FileWriter file = new FileWriter(toJSON)) {
+//            file.write("This is something");
+            System.out.println("Writing to file!");
+            //We can write any JSONArray or JSONObject instance to the file
+            file.write(flightsJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public ArrayList<String> getHeaders() {
         ArrayList<String> headers = new ArrayList<String>();

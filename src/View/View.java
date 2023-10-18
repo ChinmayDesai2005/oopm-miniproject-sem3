@@ -1,35 +1,27 @@
 package View;
 
+import Model.Flight;
+
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class View {
-
-    private MainFrame mf;
+    FlightPanel mainFlightPanel = new FlightPanel();
 
     public View() {
-        mf = new MainFrame();
+
+        Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\chinm\\OneDrive\\Desktop\\Files\\oopm-miniproject-sem3\\src\\flightIcon.png");
+        mainFlightPanel.pack();
+        mainFlightPanel.setSize(700, 800);
+        mainFlightPanel.setVisible(true);
+        System.out.println(mainFlightPanel.getSize());
+        mainFlightPanel.setTitle("Flight Management System");
+        mainFlightPanel.setIconImage(icon);
     }
 
-    /**
-     * @return the mf
-     */
-    public MainFrame getMf() {
-        return mf;
-    }
-
-    /**
-     * @param mf the mf to set
-     */
-    public void setMf(MainFrame mf) {
-        this.mf = mf;
-    }
-
-    public void centerInitialSetup(int linesBeingDisplayed, int size) {
-        mf.getIp().getCp().createDisplay(linesBeingDisplayed, size);
-    }
-
-    public void centerUpdate(ArrayList<ArrayList<String>> lines, ArrayList<String> headers) {
-        mf.getIp().getCp().updateDisplay(lines,headers);
+    public FlightPanel getFlightPanel(){
+        return mainFlightPanel;
     }
 }
 
